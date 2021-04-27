@@ -10,17 +10,23 @@ $(function(){
         console.log(jsonData);
         var taskingList = '<ol type = "1">';
         for(var i = 0; i< jsonData.length;i++){
-          taskingList += '<p><li>' + jsonData[i] + '</li></p>';
+          taskingList += '<li>' + jsonData[i] + '</li>';
         
         }
         taskingList += '</ol>';  
-        $('#tasking').html(taskingList);
+        $('#tasking').html(taskingList); //display input task in the html
         alert("Done");
+
+        // delete task on clixk
+        $("li").on('click',function(){
+          $(this).remove(jsonData[i]);
+        })
       }
     })
     
+    
   })
-
+  //clear Session
   $('#clearSession').on('click', function(e){
     e.preventDefault();
     $.ajax({
@@ -30,10 +36,7 @@ $(function(){
         console.log(response);
       }
     })
-    $.get('tasks.txt', function (data) { 
-      $('#tasking').text(null); 
-    })
-    
+    $('#tasking').text(null);
   })
 })
     // $.get('tasks.txt', function (data) {  //kuhaon ang sulod sa text file
